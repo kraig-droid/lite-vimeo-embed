@@ -57,52 +57,16 @@ class LiteVimeoEmbed extends HTMLElement {
     static warmConnections() {
         if (LiteVimeoEmbed.preconnected) return;
 
-        addPrefetch('preconnect', 'https://player.vimeo.com');
-        Images
-        addPrefetch('preconnect', 'https://i.vimeocdn.com');
+        LiteVimeoEmbed.addPrefetch('preconnect', 'https://player.vimeo.com');
+        // Images
+        LiteVimeoEmbed.addPrefetch('preconnect', 'https://i.vimeocdn.com');
         // Files .js, .css
-        // addPrefetch('preconnect', 'https://f.vimeocdn.com');
+        // LiteVimeoEmbed.addPrefetch('preconnect', 'https://f.vimeocdn.com');
         // Metrics
-        // addPrefetch('preconnect', 'https://fresnel.vimeocdn.com');
+        // LiteVimeoEmbed.addPrefetch('preconnect', 'https://fresnel.vimeocdn.com');
 
         LiteVimeoEmbed.preconnected = true;
     }
-
-    // fetchVimeoPlayerApi() {
-    //     if (window.Vimeo || (window.Vimeo && window.Vimeo.Player)) return;
-
-    //     this.vimeoApiPromise = new Promise((res, rej) => {
-    //         var el = document.createElement('script');
-    //         el.src = 'https://www.youtube.com/iframe_api';
-    //         el.async = true;
-    //         el.onload = _ => {
-    //             YT.ready(res);
-    //         };
-    //         el.onerror = rej;
-    //         this.append(el);
-    //     });
-    // }
-
-    // async addVimeoPlayerIframe(params) {
-    //     this.fetchVimeoPlayerApi();
-    //     await this.vimeoApiPromise;
-
-    //     const videoPlaceholderEl = document.createElement('div')
-    //     this.append(videoPlaceholderEl);
-
-    //     const paramsObj = Object.fromEntries(params.entries());
-
-    //     new YT.Player(videoPlaceholderEl, {
-    //         width: '100%',
-    //         videoId: this.videoId,
-    //         playerVars: paramsObj,
-    //         events: {
-    //             'onReady': event => {
-    //                 event.target.playVideo();
-    //             }
-    //         }
-    //     });
-    // }
 
     async addIframe(){
         if (this.classList.contains('lvim-activated')) return;
@@ -134,4 +98,3 @@ class LiteVimeoEmbed extends HTMLElement {
 }
 // Register custom element
 customElements.define('lite-vimeo', LiteVimeoEmbed);
-console.log('hi there');
