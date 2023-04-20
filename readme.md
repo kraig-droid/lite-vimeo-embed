@@ -6,6 +6,10 @@ Many thanks to [**Paul Irish**](https://github.com/paulirish), [**Wesley Luyten*
 **Limitations**:
 - Thumbnail image: I removed luwes' old code to lookup the thumbnail as it was no longer working. There is a PR to his repo to get it working again, but it's not something I currently need. (I'm using [Wagtail CMS, embeds](https://docs.wagtail.org/en/stable/advanced_topics/embeds.html#id1) which provides a cached embed lookup including thumbnail.) See https://github.com/luwes/lite-vimeo-embed/issues/13 if you need the thumbnail lookup.
 
+**Effects when clicked**: 
+- adds a Vimeo-specific <iframe...> as a child to <lite-vimeo...> with a param of autoplay=1
+- loads the Vimeo player API to allow, for instance, pausing the video using JavaScript ([ref](https://developer.vimeo.com/player/sdk))
+
 **Installing**:
 ```
 npm i github:kraig-droid/lite-vimeo-embed#v1.0.1
