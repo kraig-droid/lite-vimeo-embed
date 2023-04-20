@@ -61,11 +61,24 @@ class LiteVimeoEmbed extends HTMLElement {
         // Images
         LiteVimeoEmbed.addPrefetch('preconnect', 'https://i.vimeocdn.com');
         // Files .js, .css
-        // LiteVimeoEmbed.addPrefetch('preconnect', 'https://f.vimeocdn.com');
+        LiteVimeoEmbed.addPrefetch('preconnect', 'https://f.vimeocdn.com');
         // Metrics
-        // LiteVimeoEmbed.addPrefetch('preconnect', 'https://fresnel.vimeocdn.com');
+        LiteVimeoEmbed.addPrefetch('preconnect', 'https://fresnel.vimeocdn.com');
 
         LiteVimeoEmbed.preconnected = true;
+    }
+
+    fetchVimeoPlayerApi() {
+        if (window?.Vimeo?.Player) return;
+
+        this.vimeoApiPromise = new Promise((res, rej) => {
+            var el = document.createElement('script');
+            el.src = 'https://player.vimeo.com/api/player.js';
+            el.async = true;
+            el.onload = res;
+            el.onerror = rej;
+            this.append(el);
+        });
     }
 
     async addIframe(){
@@ -76,9 +89,7 @@ class LiteVimeoEmbed extends HTMLElement {
         params.append('autoplay', '1');
         params.append('playsinline', '1');
 
-        // if (this.needsvimeoApiForAutoplay) {
-        //     return this.addVimeoPlayerIframe(params);
-        // }
+        this.fetchVimeoPlayerApi();
 
         const iframeEl = document.createElement('iframe');
         iframeEl.width = 640;
