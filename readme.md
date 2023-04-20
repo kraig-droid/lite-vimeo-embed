@@ -12,7 +12,7 @@ Many thanks to [**Paul Irish**](https://github.com/paulirish), [**Wesley Luyten*
 
 **Installing**:
 ```
-npm i github:kraig-droid/lite-vimeo-embed#v1.0.1
+npm i github:kraig-droid/lite-vimeo-embed#v1.1.0
 ```
 
 **Importing**: Here's how I do it:
